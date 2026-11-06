@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>OmniCode — All-in-One Language Playground</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo"><i class="fa-solid fa-bolt"></i></div>
+    <div>
+      <h1>Omni<span>Code</span></h1>
+      <p>All‑in‑One Compiler • 100% free • no API key</p>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button class="tab active" data-view="editor"><i class="fa-solid fa-code"></i> Compiler</button>
+    <button class="tab" data-view="sql"><i class="fa-solid fa-terminal"></i> SQL Terminal</button>
+  </nav>
+  <div class="badges">
+    <span class="badge green"><i class="fa-solid fa-wifi"></i> offline-capable</span>
+    <span class="badge blue"><i class="fa-solid fa-key"></i> 0 API keys</span>
+  </div>
+</header>
+
+<!-- ============ COMPILER VIEW ============ -->
+<main id="view-editor" class="workspace">
+  <section class="pane left">
+    <div class="pane-head">
+      <select id="lang" class="select" title="Language"></select>
+      <div class="head-actions">
+        <button id="clear" class="btn ghost" title="Clear editor"><i class="fa-solid fa-eraser"></i></button>
+        <button id="run" class="btn primary"><i class="fa-solid fa-play"></i> Run <span class="kbd">Ctrl+↵</span></button>
+      </div>
+    </div>
+    <div class="editor-wrap"><textarea id="code"></textarea></div>
+  </section>
+  <section class="pane right">
+    <div class="pane-head">
+      <div class="mini-tabs">
+        <button class="mini-tab active" data-panel="output"><i class="fa-solid fa-align-left"></i> Output</button>
+        <button class="mini-tab" data-panel="input"><i class="fa-solid fa-keyboard"></i> Input (stdin)</button>
+      </div>
+      <div class="head-actions">
+        <span id="status" class="status">ready</span>
+        <button id="copy" class="btn ghost" title="Copy output"><i class="fa-regular fa-copy"></i></button>
+        <button id="clearout" class="btn ghost" title="Clear output"><i class="fa-solid fa-broom"></i></button>
+      </div>
+    </div>
+    <pre id="output" class="term" tabindex="0">▶ Output appears here. Write code, hit Run.</pre>
+    <div id="stdin-wrap" class="editor-wrap hidden"><textarea id="stdin" placeholder="Value(s) your program will read via input() / getchar() / Scanner…"></textarea></div>
+  </section>
+</main>
+
+<!-- ============ SQL TERMINAL VIEW ============ -->
+<main id="view-sql" class="workspace hidden">
+  <section class="pane sql-pane">
+    <div class="pane-head">
+      <div class="dbinfo">
+        <i class="fa-solid fa-database"></i>
+        <select id="dblist" class="select" title="Database"></select>
+        <span class="hint">— a real SQLite shell</span>
+      </div>
+      <div class="head-actions">
+        <button id="dbnew" class="btn ghost" title="Create a new empty database"><i class="fa-solid fa-plus"></i> New DB</button>
+        <button id="tablenew" class="btn ghost" title="Create a table (guided)"><i class="fa-solid fa-table"></i> New Table</button>
+        <button id="sqlreset" class="btn ghost" title="Reset this database to sample data"><i class="fa-solid fa-rotate-left"></i> Reset demo data</button>
+        <button id="sqlclear" class="btn ghost" title="Clear screen"><i class="fa-solid fa-broom"></i></button>
+      </div>
+    </div>
+    <div id="term" class="xterm" tabindex="0"></div>
+    <input id="sql-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="SQL terminal input">
+  </section>
+</main>
+
+<footer class="foot">Runs entirely on your machine — <b>Python · JS · TS · C · C++ · Bash · Perl · AWK · SQL</b> — no signup, no keys, no cloud.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/shell/shell.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
